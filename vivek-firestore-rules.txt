@@ -1,0 +1,41 @@
+辨喜文集印地文讀書會 Firestore 規則（貼到 Firebase Console → Firestore Database → Rules）
+專案：my-chinese-sentence-bank-v3（與 V4 同專案，集合與 V4 完全隔離）
+做法：打開現有規則，在 service cloud.firestore { match /databases/{database}/documents {
+裡面、最後一個 } 之前，加入下面整段，然後按 Publish。現有規則一行都不要刪。
+V4 已核准老師的讀取權由現有 V4 規則提供，不需在此重寫。
+
+    /* ================= 辨喜文集印地文讀書會（2026-10-29 新增，與 V4 隔離） ================= */
+    function isVivekAdmin() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.lower() == 'f216002@gmail.com';
+    }
+    // 申請：本人可建立自己的 pending 申請、可讀自己的申請；只有管理員可審核、刪除。
+    match /vivek_accessRequests/{userId} {
+      allow get: if isVivekAdmin()
+        || (request.auth != null && request.auth.uid == userId);
+      allow list: if isVivekAdmin();
+      allow create: if request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.uid == userId
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.status == 'pending';
+      allow update: if isVivekAdmin();
+      allow delete: if isVivekAdmin();
+    }
+    // 核准名單：本人可讀自己的核准結果；只有管理員可新增、修改、刪除。
+    // 學員讀自己的核准文件是門檻判斷的必要條件（前端 checkApproval 用）。
+    // 管理員審核方式：直接在 Firestore 建立 vivek_approvedUsers/{uid}，欄位 active=true。
+    match /vivek_approvedUsers/{userId} {
+      allow get: if isVivekAdmin()
+        || (request.auth != null && request.auth.uid == userId);
+      allow list, create, update, delete: if isVivekAdmin();
+    }
+
+注意：規則發布前，學員登入後會看到「無法確認核准狀態」，
+管理員登入後仍可直接進入（管理員免審核，不受規則影響），
+但新人申請送不出——那是規則還沒發布的正常現象，發布後重新整理即可，不用改網站程式。
+另：即時合成函式 synthesizeV4Source 只認 V4 核准老師／管理員；
+僅本站核准、非 V4 核准者按播放時，函式會被拒，播放鍵會自動退回裝置語音，
+本批 238 張已有預合成靜態檔，不受此限。
