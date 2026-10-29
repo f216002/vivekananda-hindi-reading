@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FF7A00">
+<title>辨喜文集第一卷・印地文讀書會 — Vivekananda Hindi Reading</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Serif+TC:wght@500;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFF8E1; --bg2:#FFF3C4; --surface:#ffffff; --surface2:#FFFDE7;
+  --ink:#1e1a13; --ink2:#4a4436; --muted:#7d7466;
+  --line:#F5D78E; --line2:#F9E7B8;
+  --gold:#E65100; --gold2:#FF8F00; --goldsoft:#FFECB3;
+  --seal:#E53935; --sealsoft:#FFEBEE;
+  --teal:#43A047; --tealsoft:#E8F5E9;
+  --chip:#FFF3C4;
+  --shadow:0 1px 2px rgba(230,126,0,.10),0 12px 30px rgba(230,126,0,.14);
+  --radius:14px; --fs:1;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#201812; --bg2:#2A1E14; --surface:#332619; --surface2:#3A2B1C;
+    --ink:#FFF3D6; --ink2:#E8D9B8; --muted:#B8A888;
+    --line:#57452E; --line2:#453A28;
+    --gold:#FFB74D; --gold2:#FFA726; --goldsoft:#4A3410;
+    --seal:#FF8A80; --sealsoft:#4A2018;
+    --teal:#81C784; --tealsoft:#1E3A26;
+    --chip:#3A2E1C;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}
+button{font-family:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 18px 90px}
+.hero{padding:52px 0 8px}
+.hero .rule{width:56px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:22px}
+.hero h1{font-family:"Noto Serif TC",serif;font-weight:900;font-size:clamp(34px,6vw,54px);line-height:1.25;margin:0 0 6px;letter-spacing:.04em;text-wrap:balance}
+.hero .hi-title{font-family:"Noto Sans Devanagari",sans-serif;font-weight:700;font-size:clamp(22px,3.4vw,30px);line-height:1.6;margin:0 0 8px}
+.hero .sub{color:var(--ink2);font-size:16px;line-height:1.7;margin:0 0 26px;max-width:720px}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:34px}
+.btn{display:inline-block;border:1px solid #FFB300;background:#FFECB3;color:#BF360C;border-radius:10px;padding:11px 20px;font-size:15px;text-decoration:none;font-weight:700}
+.btn.primary{background:#FF7A00;color:#fff;border-color:#FF7A00;box-shadow:0 4px 18px rgba(255,122,0,.45)}
+.factgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:6px 0 10px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow)}
+.fact .k{font-size:12.5px;color:var(--muted);letter-spacing:.08em;margin-bottom:6px}
+.fact .v{font-family:"Noto Serif TC",serif;font-weight:700;font-size:19px;line-height:1.5}
+.fact .v small{display:block;font-family:"Noto Sans TC",sans-serif;font-weight:400;font-size:13.5px;color:var(--ink2);margin-top:4px;line-height:1.65}
+@media(max-width:760px){.factgrid{grid-template-columns:1fr}}
+.reminder{margin-top:14px;border:1px solid var(--line);border-left:4px solid var(--gold2);background:var(--surface2);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px}
+.reminder p{margin:6px 0;font-size:15px}
+section.block{padding:44px 0 6px}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:10px;border-bottom:2px solid #FFB300;padding-bottom:10px}
+.sec-head h2{font-family:"Noto Serif TC",serif;font-weight:900;font-size:30px;margin:0;letter-spacing:.03em;text-wrap:balance}
+.sec-sub{color:var(--ink2);font-size:15px;max-width:760px;margin:4px 0 20px}
+.small{font-size:13.5px;color:var(--muted)}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--chip);color:var(--ink2);white-space:nowrap}
+.tag.done{background:var(--tealsoft);color:var(--teal)}
+.tag.wait{background:var(--sealsoft);color:var(--seal)}
+.toc-row{display:flex;gap:12px;align-items:baseline;background:var(--surface);border:1px solid var(--line2);border-radius:10px;padding:10px 14px;margin-bottom:6px;text-decoration:none;color:var(--ink)}
+.toc-row .pg{flex:0 0 110px;color:var(--muted);font-size:13.5px}
+.toc-row .tt{flex:1;min-width:0}
+.toc-row .hi{font-family:"Noto Sans Devanagari",sans-serif;font-size:15.5px;line-height:1.5}
+.toc-row .zh{font-size:14px;color:var(--ink2)}
+@media(max-width:560px){.toc-row{flex-wrap:wrap}.toc-row .pg{flex-basis:auto}}
+.reader-tools{position:sticky;top:8px;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.toolbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:9px 13px;font-size:13.5px;font-weight:500}
+.toolbtn:disabled{opacity:.45;cursor:default}
+.toolbtn.playselected{background:#FF7A00;border-color:#FF7A00;color:#fff;font-weight:700}
+.toolbtn.stop{background:#E53935;border-color:#E53935;color:#fff;font-weight:700}
+.toolbtn.fontbtn{background:#FFF9C4;border-color:#FFB300;color:#7A4A00}
+.loop-check{display:inline-flex;gap:6px;align-items:center;font-size:13.5px;border:1px solid var(--line);background:#E8F5E9;border-color:#81C784;color:#2E7D32;border-radius:9px;padding:9px 13px}
+.loop-check input{width:20px;height:20px;accent-color:#43A047}
+.count-note{font-size:13px;color:var(--muted)}
+.card{background:var(--surface);border:1px solid var(--line2);border-radius:var(--radius);padding:18px 20px 14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card.playing-now{border-color:var(--gold2);box-shadow:0 0 0 2px var(--goldsoft),var(--shadow)}
+.card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:nowrap}
+.card-top input{width:20px;height:20px;accent-color:#FF7A00;flex:none}
+.sid{font-weight:700;font-size:13px;background:#FF7A00;color:#fff;border-radius:6px;padding:2px 9px;letter-spacing:.04em;flex:none}
+.card-top .pgno{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.card-top .rep-note{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12.5px;color:var(--gold)}
+.card-actions{margin-left:auto;display:flex;gap:6px;flex-wrap:nowrap;flex:none}
+.abtn{border:1px solid var(--line);background:var(--surface2);color:var(--ink);border-radius:8px;padding:5px 11px;font-size:12.5px;font-weight:500}
+@media(max-width:700px){.card{padding:16px 16px 12px}.card-top{gap:6px}.card-top .sid{padding:2px 7px}.abtn{padding:5px 6px;font-size:11.5px}}
+.hi-s{font-family:"Noto Sans Devanagari",sans-serif;font-size:calc(22px * var(--fs));line-height:1.9;margin:2px 0 8px;font-weight:600}
+.rom-s{font-style:italic;font-size:calc(17px * var(--fs));line-height:1.8;margin:0 0 8px;color:var(--ink2)}
+.zh-s{font-size:calc(15.5px * var(--fs));line-height:1.9;margin:0 0 4px;font-weight:500}
+.ai-note{font-size:12px;color:var(--muted);margin:0 0 2px}
+.doubt-note{font-size:13px;color:var(--seal);margin:6px 0 0}
+.trunc-note{font-size:13px;color:var(--seal);margin:6px 0 0;font-weight:700}
+.footnotes{border-top:1px solid var(--line2);margin-top:16px;padding-top:10px;font-size:13.5px;color:var(--muted);line-height:1.9}
+.footnotes .hi{font-family:"Noto Sans Devanagari",sans-serif}
+footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 6px;color:var(--muted);font-size:13.5px;line-height:1.8}
+</style>
+<!-- version 20261029-01 -->
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="rule"></div>
+    <h1>辨喜文集第一卷・印地文讀書會</h1>
+    <p class="hi-title">विवेकानन्द साहित्य — प्रथम खंड（第一批）</p>
+    <p class="sub">一印地文句一卡：上印地文、中羅馬拼音、下中文翻譯。點播先播中文 1 遍，再播印地文 3 遍，聲音為 Azure 預先合成（中文女聲、印地文男聲，皆放慢 20%）。公開站，無登入。</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#reader">開始共讀</a>
+      <a class="btn" href="#toc">看全書目錄</a>
+    </div>
+    <div class="factgrid">
+      <div class="fact"><div class="k">句子卡</div><div class="v">238 張<small>完整 237 張＋本批中斷 1 張；標題 12 筆、註腳 11 筆</small></div></div>
+      <div class="fact"><div class="k">內容</div><div class="v">6 組<small>出版說明、序言、尼維迪塔短文、正文三篇演講</small></div></div>
+      <div class="fact"><div class="k">來源</div><div class="v">Advaita Ashrama<small>第三版 1989；出版說明 1963 年 8 月；掃描來源 CC-0 收藏</small></div></div>
+    </div>
+    <div class="reminder">
+      <p><b>請注意：</b>所有中文翻譯皆為 <b>AI 翻譯草稿，待校對</b>，不是定稿；疑讀 4 筆（P16-04、P16-10、P19-16、WEL-06）卡下已標示，原文照錄未擅改；正文最後一句 HINDU-31 在書頁 8 末中斷，下文不在本批內。</p>
+      <p class="small">版本 20261029-01。封面、空白頁、照片、分隔頁與全書目錄不拆卡，僅作章節標題與目錄處理；註腳只作每節末小字註，不播音。</p>
+    </div>
+  </header>
+
+  <section class="block" id="toc">
+    <div class="sec-head"><h2>目錄</h2></div>
+    <p class="sec-sub">本批 30 頁掃描檔的全部內容，依書中順序排列。</p>
+    <div id="tocList"></div>
+  </section>
+
+  <section class="block" id="reader">
+    <div class="sec-head"><h2>共讀</h2><span class="tag done">第一批・已上線</span></div>
+    <div class="reader-tools">
+      <button class="toolbtn playselected" id="btnPlaySel" disabled>▶ 播放已選</button>
+      <button class="toolbtn stop" id="btnStop">■ 停止</button>
+      <label class="loop-check"><input type="checkbox" id="chkLoop"> 循環</label>
+      <button class="toolbtn fontbtn" id="btnFont">A+</button>
+      <span class="count-note" id="selNote">已選 0 張</span>
+      <span class="count-note" id="playNote"></span>
+    </div>
+    <div id="groups"></div>
+  </section>
+
+  <footer>
+    <p>辨喜文集第一卷・印地文讀書會，第一批（掃描 PDF 1–30 頁）。音檔：Azure Speech 預合成靜態檔，中文 zh-TW-HsiaoChenNeural（溫柔、放慢 20%）、印地文 hi-IN-MadhurNeural 男聲（放慢 20%）。音檔若播不出來，系統會退回裝置語音（中文 zh-TW、印地文 hi-IN）。</p>
+    <p>版本 20261029-01｜repo：f216002/vivekananda-hindi-reading</p>
+  </footer>
+</div>
+<script src="data.js?v=20261029-01"></script>
+<script>
+const G = window.VIVEK_GROUPS, CARDS = window.VIVEK_CARDS;
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const tocEl = document.getElementById('tocList');
+G.forEach(g => {
+  const a = document.createElement('a');
+  a.className = 'toc-row'; a.href = '#g-' + g.key;
+  a.innerHTML = '<span class="pg">' + esc(g.pages) + '</span><span class="tt"><span class="hi">' + esc(g.hi) + '</span><br><span class="zh">' + esc(g.zh) + '・' + g.count + ' 張・' + esc(g.note) + '</span></span>';
+  tocEl.appendChild(a);
+});
+const groupsEl = document.getElementById('groups');
+G.forEach(g => {
+  const sec = document.createElement('section');
+  sec.className = 'block'; sec.id = 'g-' + g.key;
+  let html = '<div class="sec-head"><h2>' + esc(g.zh) + '</h2><span class="tag">' + g.count + ' 張</span></div>'
+    + '<p class="sec-sub">' + esc(g.hi) + '｜' + esc(g.pages) + '｜' + esc(g.note) + '</p>';
+  if (g.headings.length) html += '<p class="small">標題：' + g.headings.map(esc).join('・') + '</p>';
+  CARDS.filter(c => c.g === g.key).forEach(c => {
+    const pg = c.book ? ('書頁 ' + c.book + '・PDF ' + c.pdf) : ('PDF ' + c.pdf);
+    html += '<article class="card" id="card-' + c.id + '" data-id="' + c.id + '">'
+      + '<div class="card-top"><input type="checkbox" class="sel" aria-label="勾選 ' + c.id + '">'
+      + '<span class="sid">' + c.id + '</span><span class="pgno">' + pg + '</span>'
+      + '<span class="rep-note"></span>'
+      + '<span class="card-actions"><button class="abtn" data-act="play">▶ 播放</button><button class="abtn" data-act="stop">■ 停止</button></span></div>'
+      + '<p class="hi-s">' + esc(c.hi) + '</p>'
+      + '<p class="rom-s">' + esc(c.rom) + '</p>'
+      + '<p class="zh-s">' + esc(c.zh) + '</p>'
+      + '<p class="ai-note">中文：AI 翻譯草稿，待校對</p>'
+      + (c.doubt ? '<p class="doubt-note">疑讀：原文照錄，待校對</p>' : '')
+      + (c.st === 'truncated' ? '<p class="trunc-note">本批在此中斷</p>' : '')
+      + '</article>';
+  });
+  if (g.footnotes.length) html += '<div class="footnotes"><b>註腳（不播音）：</b><br>' + g.footnotes.map(f => '<span class="hi">' + esc(f) + '</span>').join('<br>') + '</div>';
+  sec.innerHTML = html;
+  groupsEl.appendChild(sec);
+});
+
+// ---------- playback: zh x1, then hi x3, 450ms gaps, speechSynthesis fallback ----------
+let stopFlag = false, currentAudio = null, playToken = 0;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const playNote = document.getElementById('playNote');
+function setRep(cardEl, txt){ const n = cardEl.querySelector('.rep-note'); if (n) n.textContent = txt; }
+function markPlaying(cardEl, on){ cardEl.classList.toggle('playing-now', !!on); if (!on) setRep(cardEl, ''); }
+function ttsFallback(text, lang, rate){
+  return new Promise(res => {
+    try {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang; u.rate = rate;
+      u.onend = () => res(); u.onerror = () => res();
+      speechSynthesis.speak(u);
+    } catch(e){ res(); }
+  });
+}
+function playFile(url, text, lang, rate){
+  return new Promise(res => {
+    const a = new Audio(url);
+    currentAudio = a;
+    let done = false;
+    const finish = () => { if (!done){ done = true; res(); } };
+    a.onended = finish;
+    a.onerror = () => { ttsFallback(text, lang, rate).then(finish); };
+    const p = a.play();
+    if (p && p.catch) p.catch(() => { ttsFallback(text, lang, rate).then(finish); });
+    setTimeout(() => { if (!done && a.paused && a.currentTime === 0) { /* let error handler deal */ } }, 8000);
+  });
+}
+async function playCard(card, token){
+  const el = document.getElementById('card-' + card.id);
+  markPlaying(el, true);
+  const seq = [{url:'audio/' + card.id + '-zh.mp3', text:card.zh, lang:'zh-TW', rate:0.95, label:'中文 1/1'}];
+  for (let i = 1; i <= 3; i++) seq.push({url:'audio/' + card.id + '-hi.mp3', text:card.hi, lang:'hi-IN', rate:0.9, label:'印地文 ' + i + '/3'});
+  for (const s of seq){
+    if (stopFlag || token !== playToken) break;
+    setRep(el, s.label); playNote.textContent = card.id + '：' + s.label;
+    await playFile(s.url, s.text, s.lang, s.rate);
+    if (stopFlag || token !== playToken) break;
+    await sleep(450);
+  }
+  markPlaying(el, false); playNote.textContent = '';
+}
+function stopAll(){
+  stopFlag = true; playToken++;
+  if (currentAudio){ try{ currentAudio.pause(); }catch(e){} currentAudio = null; }
+  try{ speechSynthesis.cancel(); }catch(e){}
+  document.querySelectorAll('.card.playing-now').forEach(el => markPlaying(el, false));
+  playNote.textContent = '';
+}
+function updateSel(){
+  const n = document.querySelectorAll('.sel:checked').length;
+  document.getElementById('selNote').textContent = '已選 ' + n + ' 張';
+  document.getElementById('btnPlaySel').disabled = n === 0;
+}
+document.addEventListener('change', e => { if (e.target.classList.contains('sel')) updateSel(); });
+document.addEventListener('click', async e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.id === 'btnStop'){ stopAll(); return; }
+  if (b.id === 'btnPlaySel'){
+    const ids = [...document.querySelectorAll('.sel:checked')].map(cb => cb.closest('.card').dataset.id);
+    if (!ids.length) return;
+    stopAll(); await sleep(50); stopFlag = false; const token = ++playToken;
+    for (const id of ids){
+      if (stopFlag || token !== playToken) break;
+      const card = CARDS.find(c => c.id === id);
+      if (card) await playCard(card, token);
+    }
+    if (document.getElementById('chkLoop').checked && !stopFlag){
+      // loop once more is handled by re-click; keep simple: loop selected list
+      const token2 = playToken;
+      while (document.getElementById('chkLoop').checked && !stopFlag && token2 === playToken){
+        for (const id of ids){
+          if (stopFlag || token2 !== playToken) break;
+          const card = CARDS.find(c => c.id === id);
+          if (card) await playCard(card, token2);
+        }
+        if (!document.getElementById('chkLoop').checked) break;
+        await sleep(600);
+      }
+    }
+    return;
+  }
+  if (b.id === 'btnFont'){
+    const steps = [{fs:1,label:'A+'},{fs:1.175,label:'A++'},{fs:1.35,label:'A+++'},{fs:1.525,label:'A++++'},{fs:1.7,label:'A+++++'}];
+    let i = steps.findIndex(s => s.label === b.textContent);
+    i = (i + 1) % steps.length;
+    document.documentElement.style.setProperty('--fs', steps[i].fs);
+    b.textContent = steps[i].label;
+    return;
+  }
+  const act = b.dataset.act; if (!act) return;
+  const cardEl = b.closest('.card'); const card = CARDS.find(c => c.id === cardEl.dataset.id);
+  if (act === 'stop'){ stopAll(); return; }
+  if (act === 'play'){ stopAll(); await sleep(50); stopFlag = false; await playCard(card, ++playToken); }
+});
+updateSel();
+</script>
+</body>
+</html>
