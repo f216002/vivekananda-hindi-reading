@@ -86,7 +86,7 @@ section.block{padding:44px 0 6px}
 .heading-block .hi,.footnote-block .hi{font-family:"Noto Sans Devanagari",sans-serif}
 .heading-block .rom,.footnote-block .rom{font-style:italic;color:var(--ink2)}
 @media(max-width:560px){.toc-row{flex-wrap:wrap}.toc-row .pg{flex-basis:auto}}
-.reader-tools{position:sticky;top:8px;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.reader-tools{position:sticky;top:8px;z-index:20;background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:10px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
 .toolbtn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:9px;padding:9px 13px;font-size:13.5px;font-weight:500}
 .toolbtn:disabled{opacity:.45;cursor:default}
 .toolbtn.playselected{background:#FF7A00;border-color:#FF7A00;color:#fff;font-weight:700}
@@ -96,6 +96,7 @@ section.block{padding:44px 0 6px}
 .loop-check input{width:20px;height:20px;accent-color:#43A047}
 .count-note{font-size:13px;color:var(--muted)}
 .card{background:var(--surface);border:1px solid var(--line2);border-radius:var(--radius);padding:18px 20px 14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.card{content-visibility:auto;contain-intrinsic-size:auto 180px}
 .card.playing-now{border-color:var(--gold2);box-shadow:0 0 0 2px var(--goldsoft),var(--shadow)}
 .card-top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:nowrap}
 .card-top input{width:20px;height:20px;accent-color:#FF7A00;flex:none}
@@ -115,7 +116,7 @@ section.block{padding:44px 0 6px}
 .footnotes .hi{font-family:"Noto Sans Devanagari",sans-serif}
 footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 6px;color:var(--muted);font-size:13.5px;line-height:1.8}
 </style>
-<!-- version 20261029-11 -->
+<!-- version 20261029-12 -->
 </head>
 <body>
 <div id="vivekGate" style="max-width:560px;margin:8vh auto;padding:28px;background:#fffdf8;border:1px solid #ddd2bd;border-radius:16px;font-family:'Noto Sans TC',sans-serif;line-height:1.8;color:#26221b">
@@ -153,7 +154,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 6px;color
     </div>
     <div class="reminder">
       <p><b>請注意：</b>所有中文翻譯皆為 <b>AI 翻譯草稿，待校對</b>，不是定稿；疑讀共 99 筆卡下已標示，原文照錄未擅改；王瑜伽第一至八章、瑜伽經引言與第一至四章、書信集第一輯已完；全卷掃描 1–486 頁已全部上線。</p>
-      <p class="small">版本 20261029-11。封面、空白頁、照片、分隔頁與全書目錄不拆卡，僅作章節標題與目錄處理；註腳置於每節末，附羅馬拼音與播放鍵。</p>
+      <p class="small">版本 20261029-12。封面、空白頁、照片、分隔頁與全書目錄不拆卡，僅作章節標題與目錄處理；註腳置於每節末，附羅馬拼音與播放鍵。</p>
     </div>
   </header>
 
@@ -178,7 +179,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:22px 0 6px;color
 
   <footer>
     <p>辨喜文集第一卷・印地文讀書會，全卷掃描 1–486 頁（第一批 1–30 頁＋第二批 31–60 頁＋第三至七批 61–210 頁＋第八至十六批 211–486 頁）。音檔：第一批 238 張為 Azure Speech 預合成靜態檔，中文 zh-TW-HsiaoChenNeural（溫柔、放慢 20%）、印地文 hi-IN-MadhurNeural 男聲（放慢 20%）；其餘句子卡按播放才即時合成（走 V4 函式，僅 V4 核准老師／管理員可用，否則退回裝置語音）。音檔若播不出來，系統會退回裝置語音（中文 zh-TW、印地文 hi-IN）。首頁標題與 40 組目錄小標題亦為 Azure 預合成靜態檔（中文 1 遍＋印地文 3 遍，印地文為 Madhur 男聲）。節內標題 160 筆與註腳 90 筆亦為 Azure 男聲預合成靜態檔（各播 1 遍）。登入門檻比照三寶讀書會：V4 已核准老師直通，新人申請走 vivek_accessRequests，管理員核准後進入。</p>
-    <p>版本 20261029-11｜repo：f216002/vivekananda-hindi-reading</p>
+    <p>版本 20261029-12｜repo：f216002/vivekananda-hindi-reading</p>
   </footer>
 </div>
 <script src="data.js?v=20261029-11"></script>
@@ -194,31 +195,89 @@ G.forEach(g => {
   tocEl.appendChild(row);
 });
 const groupsEl = document.getElementById('groups');
-G.forEach(g => {
-  const sec = document.createElement('section');
-  sec.className = 'block'; sec.id = 'g-' + g.key;
+// 效能：卡片不再一次全量渲染。先建 40 組外殼（標題／節標題／註腳量小），卡片等該組接近畫面時才渲染，
+// 已渲染的不卸載；勾選狀態另存 selectedIds，不依賴 DOM 查詢，播已選與計數都不受渲染狀態影響。
+const byGroup = new Map();
+G.forEach(g => byGroup.set(g.key, []));
+CARDS.forEach(c => { const a = byGroup.get(c.g); if (a) a.push(c); });
+const selectedIds = new Set();
+function cardHTML(c){
+  const pg = c.book ? ('書頁 ' + c.book + '・PDF ' + c.pdf) : ('PDF ' + c.pdf);
+  return '<article class="card" id="card-' + c.id + '" data-id="' + c.id + '">'
+    + '<div class="card-top"><input type="checkbox" class="sel" aria-label="勾選 ' + c.id + '"' + (selectedIds.has(c.id) ? ' checked' : '') + '>'
+    + '<span class="sid">' + c.id + '</span><span class="pgno">' + pg + '</span>'
+    + '<span class="rep-note"></span>'
+    + '<span class="card-actions"><button class="abtn" data-act="play">▶ 播放</button><button class="abtn" data-act="stop">■ 停止</button></span></div>'
+    + '<p class="hi-s">' + esc(c.hi) + '</p>'
+    + '<p class="rom-s">' + esc(c.rom) + '</p>'
+    + '<p class="zh-s">' + esc(c.zh) + '</p>'
+    + '<p class="ai-note">中文：AI 翻譯草稿，待校對</p>'
+    + (c.doubt ? '<p class="doubt-note">疑讀：原文照錄，待校對</p>' : '')
+    + (c.st === 'truncated' ? '<p class="trunc-note">本批在此中斷</p>' : '')
+    + '</article>';
+}
+function sectionHeadHTML(g){
   let html = '<div class="sec-head"><h2>' + esc(g.zh) + '</h2><span class="tag">' + g.count + ' 張</span><button type="button" class="sec-play" data-act="play-title" data-g="' + g.key + '">▶ 播放標題</button></div>'
     + '<p class="sec-sub"><span class="hi">' + esc(g.hi) + '</span><br><span class="rom">' + esc(g.rom) + '</span><br>' + esc(g.pages) + '｜' + esc(g.note) + '</p>';
   if (g.headings.length) html += '<div class="small" style="margin-bottom:16px"><b>標題：</b>' + g.headings.map((h, i) => '<div class="heading-block"><div class="txt"><div class="hi">' + esc(h).replace(/\n/g, '<br>') + '</div><div class="rom">' + esc(g.headingsRom[i] || '').replace(/\n/g, '<br>') + '</div></div><button type="button" class="mini-play" data-act="play-heading" data-g="' + g.key + '" data-kind="heading" data-idx="' + i + '">▶</button></div>').join('') + '</div>';
-  CARDS.filter(c => c.g === g.key).forEach(c => {
-    const pg = c.book ? ('書頁 ' + c.book + '・PDF ' + c.pdf) : ('PDF ' + c.pdf);
-    html += '<article class="card" id="card-' + c.id + '" data-id="' + c.id + '">'
-      + '<div class="card-top"><input type="checkbox" class="sel" aria-label="勾選 ' + c.id + '">'
-      + '<span class="sid">' + c.id + '</span><span class="pgno">' + pg + '</span>'
-      + '<span class="rep-note"></span>'
-      + '<span class="card-actions"><button class="abtn" data-act="play">▶ 播放</button><button class="abtn" data-act="stop">■ 停止</button></span></div>'
-      + '<p class="hi-s">' + esc(c.hi) + '</p>'
-      + '<p class="rom-s">' + esc(c.rom) + '</p>'
-      + '<p class="zh-s">' + esc(c.zh) + '</p>'
-      + '<p class="ai-note">中文：AI 翻譯草稿，待校對</p>'
-      + (c.doubt ? '<p class="doubt-note">疑讀：原文照錄，待校對</p>' : '')
-      + (c.st === 'truncated' ? '<p class="trunc-note">本批在此中斷</p>' : '')
-      + '</article>';
-  });
-  if (g.footnotes.length) html += '<div class="footnotes"><b>註腳：</b>' + g.footnotes.map((f, i) => '<div class="footnote-block"><div class="txt"><div class="hi">' + esc(f).replace(/\n/g, '<br>') + '</div><div class="rom">' + esc(g.footnotesRom[i] || '').replace(/\n/g, '<br>') + '</div></div><button type="button" class="mini-play" data-act="play-heading" data-g="' + g.key + '" data-kind="footnote" data-idx="' + i + '">▶</button></div>').join('') + '</div>';
-  sec.innerHTML = html;
+  return html;
+}
+function footnotesHTML(g){
+  if (!g.footnotes.length) return '';
+  return '<div class="footnotes"><b>註腳：</b>' + g.footnotes.map((f, i) => '<div class="footnote-block"><div class="txt"><div class="hi">' + esc(f).replace(/\n/g, '<br>') + '</div><div class="rom">' + esc(g.footnotesRom[i] || '').replace(/\n/g, '<br>') + '</div></div><button type="button" class="mini-play" data-act="play-heading" data-g="' + g.key + '" data-kind="footnote" data-idx="' + i + '">▶</button></div>').join('') + '</div>';
+}
+const renderedGroups = new Set();
+function renderGroup(key){
+  if (renderedGroups.has(key)) return;
+  const sec = document.getElementById('g-' + key);
+  if (!sec) return;
+  const box = sec.querySelector('.cards');
+  if (!box) return;
+  box.innerHTML = (byGroup.get(key) || []).map(cardHTML).join('');
+  renderedGroups.add(key);
+}
+G.forEach(g => {
+  const sec = document.createElement('section');
+  sec.className = 'block'; sec.id = 'g-' + g.key;
+  sec.innerHTML = sectionHeadHTML(g) + '<div class="cards"></div>' + footnotesHTML(g);
   groupsEl.appendChild(sec);
 });
+function hashGroupKey(){
+  const h = (location.hash || '').slice(1);
+  if (!h) return null;
+  if (h.indexOf('card-') === 0){
+    const card = CARDS.find(c => 'card-' + c.id === h);
+    return card ? card.g : null;
+  }
+  if (h.indexOf('g-') === 0) return h.slice(2);
+  return null;
+}
+const hashKey = hashGroupKey();
+if (hashKey) renderGroup(hashKey);
+if ('IntersectionObserver' in window){
+  const io = new IntersectionObserver(entries => {
+    for (const en of entries){
+      if (en.isIntersecting){
+        renderGroup(en.target.id.slice(2));
+        io.unobserve(en.target);
+      }
+    }
+  }, {rootMargin: '1000px 0px'});
+  document.querySelectorAll('#groups section.block').forEach(sec => io.observe(sec));
+} else {
+  G.forEach(g => renderGroup(g.key));
+}
+if (hashKey && !document.body.classList.contains('vivek-approved')){
+  // 未登入時 .wrap 被隱藏、錨點跳轉無效；登入顯示後再跳一次
+  const mo = new MutationObserver(() => {
+    if (document.body.classList.contains('vivek-approved')){
+      mo.disconnect();
+      const el = document.getElementById((location.hash || '').slice(1));
+      if (el) el.scrollIntoView();
+    }
+  });
+  mo.observe(document.body, {attributes: true, attributeFilter: ['class']});
+}
 
 // ---------- playback: zh x1, then hi x3, 450ms gaps, speechSynthesis fallback ----------
 let stopFlag = false, currentAudio = null, playToken = 0, headingPlayingKey = null;
@@ -265,6 +324,7 @@ async function playFile(url, text, lang, rate){
   await playSegment(url, text, lang, rate);
 }
 async function playCard(card, token){
+  if (!document.getElementById('card-' + card.id)) renderGroup(card.g);
   const el = document.getElementById('card-' + card.id);
   markPlaying(el, true);
   const seq = [{url:'audio/' + card.id + '-zh.mp3', text:card.zh, lang:'zh-TW', rate:0.95, label:'中文 1/1'}];
@@ -307,16 +367,24 @@ function stopAll(){
   playNote.textContent = '';
 }
 function updateSel(){
-  const n = document.querySelectorAll('.sel:checked').length;
-  document.getElementById('selNote').textContent = '已選 ' + n + ' 張';
-  document.getElementById('btnPlaySel').disabled = n === 0;
+  document.getElementById('selNote').textContent = '已選 ' + selectedIds.size + ' 張';
+  document.getElementById('btnPlaySel').disabled = selectedIds.size === 0;
 }
-document.addEventListener('change', e => { if (e.target.classList.contains('sel')) updateSel(); });
+document.addEventListener('change', e => {
+  if (e.target.classList.contains('sel')){
+    const cardEl = e.target.closest('.card');
+    if (cardEl){
+      const id = cardEl.dataset.id;
+      if (e.target.checked) selectedIds.add(id); else selectedIds.delete(id);
+    }
+    updateSel();
+  }
+});
 document.addEventListener('click', async e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.id === 'btnStop'){ stopAll(); return; }
   if (b.id === 'btnPlaySel'){
-    const ids = [...document.querySelectorAll('.sel:checked')].map(cb => cb.closest('.card').dataset.id);
+    const ids = CARDS.filter(c => selectedIds.has(c.id)).map(c => c.id);
     if (!ids.length) return;
     stopAll(); await sleep(50); stopFlag = false; const token = ++playToken;
     for (const id of ids){
